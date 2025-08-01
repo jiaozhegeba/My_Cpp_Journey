@@ -1,20 +1,20 @@
-# *.o
-# *.out
-# *.exe
-# *.obj
-# *.pdb
-# *.ilk
-# *.log
-# *.dSYM
-# *.DS_Store
-# Thumbs.db
-# .vscode/
-# .idea/
-# .vs/
-# CMakeFiles/
-# CMakeCache.txt
-# Makefile
-# build/
-# bin/
-# lib/
-# test/
+*.o
+*.out
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.log
+*.dSYM
+*.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.vs/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+build/
+bin/
+lib/
+test/
