@@ -1,6 +1,17 @@
 #include <iostream>
 #include <array>
 
+#include <initializer_list>
+
+// Initializer list
+int makeSum(std::initializer_list<int> nums) {
+    int sum = 0;
+    for (auto n : nums) {
+        sum += n;
+    }
+    return sum;
+}
+
 int main() 
 {
     // struct binding
@@ -12,6 +23,10 @@ int main()
     std::array<int, 3> arr = {1, 2, 3};
     auto [a, b, c] = arr; // struct binding
     std::cout << "a: " << a << ", b: " << b << ", c: " << c << std::endl;
+
+    // Example: Function with Initializer List
+    int sum = makeSum({1, 2, 3, 4, 5});
+    std::cout << "Sum: " << sum << std::endl;
 
     return 0;
 }
