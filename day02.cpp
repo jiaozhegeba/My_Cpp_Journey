@@ -11,8 +11,8 @@
 int main()
 {
     // Pointer 
-    int* my_ptr = nullptr; // Initialize pointer to null
-    int my_var = 42; // Create an integer variable
+    int* my_ptr = nullptr; // Initialize pointer to nullptr when don't initialize it immediately
+    int my_var = 42; 
     my_ptr = &my_var; // Assign the address of my_var to my_ptr
 
     // Accessing the value using the pointer
@@ -33,5 +33,19 @@ int main()
     * & is used to get the address of a variable.
     */
 
-    return 0; 
+    int* dynamic_ptr = new int; // Allocate memory on the heap
+    *dynamic_ptr = 200;
+
+    std::cout << "Value of dynamic_ptr: " << *dynamic_ptr << std::endl;
+    std::cout << "Address of dynamic_ptr: " << dynamic_ptr << std::endl;
+
+    // The pointers will be not used after this point, but we should free the memory allocated on the heap
+    delete my_ptr;
+    delete dynamic_ptr;
+    // It's important to set pointers to nullptr after deleting to avoid dangling pointers
+    my_ptr = nullptr; 
+    dynamic_ptr = nullptr; 
+
+    
+    return 0;
 }
