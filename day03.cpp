@@ -102,5 +102,8 @@ int main()
     }
     std::cout << std::endl;
 
+    // By default use unique_ptr instead of raw pointers
+    // but if you need shared ownership, use shared_ptr
+
     return 0;
 }
