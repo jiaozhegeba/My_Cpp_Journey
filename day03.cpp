@@ -19,6 +19,33 @@ void fun_cout(int i)
 }
 
 
+void fun_addOne(int i)
+{
+    i += 1;
+}
+
+void fun_addOne_ref(int& j)
+{
+    j += 1;
+}
+
+void print_str(const std::string& str)
+{
+    std::cout << "String: " << str << std::endl;
+    //str += " modified"; // This will not change the original string
+    //std::cout << "Modified String: " << str << std::endl;
+}
+
+double divide(double a, double b)
+{
+    if (b == 0) {
+        //throw std::runtime_error("Division by zero");
+        throw std::invalid_argument("Division by zero");
+    }
+    return a / b;
+}
+
+
 int main()
 {
     // Dynamically allocate memory for an array of integers in heap
@@ -104,6 +131,76 @@ int main()
 
     // By default use unique_ptr instead of raw pointers
     // but if you need shared ownership, use shared_ptr
+
+
+    //////////////
+    // Reference//
+    //////////////
+    int x = 10;
+    int& ref_x = x; // Create a reference to x
+    std::cout << "Value of x: " << x << std::endl;
+    std::cout << "Value of ref_x: " << ref_x << std::endl;
+    ref_x = 20; // Modify x through the reference
+    std::cout << "New value of x: " << x << std::endl;
+    std::cout << "New value of ref_x: " << ref_x << std::endl;
+
+    //
+    // Pass by reference
+    //
+    int num = 5;
+    std::cout << "Before fun_addOne: " << num << std::endl;
+    fun_addOne(3); // Pass by value
+    std::cout << "After fun_addOne (by value): " << num << std::endl;
+    fun_addOne_ref(num); // Pass by reference
+    std::cout << "After fun_addOne (by reference): " << num << std::endl;
+
+    //
+    // Pass by const reference
+    //
+    std::string str = "Hello";
+    print_str(str); 
+    // * no copy is made but the original variable cannot be changed
+
+
+
+    ////////////////
+    // Exceptions //
+    ////////////////
+    try {
+        std::cout << divide(10.0, 2.0) << std::endl; // Should work fine
+        double result = divide(10.0, 0.0);
+        std::cout << "Result: " << result << std::endl;
+    } catch (const std::invalid_argument& e) {
+        std::cout << "Caught an exception: " << e.what() << std::endl;
+    }
+
+    ////////////////////
+    // Type reference //
+    ////////////////////
+    // * Type reference can let compiler automatically deduce the type of a variable.
+    // * keyword auto and decltype
+
+    auto a = 10; // a is of type int
+    auto b = 3.14; // b is of type double
+    std::cout << "a: " << a << ", b: " << b << std::endl;
+    std::cout << "Type of a: " << typeid(a).name() << std::endl;
+    std::cout << "Type of b: " << typeid(b).name() << std::endl;
+
+    // * auto strips away the reference and constness, so use auto& or const auto& to keep the reference or constness.
+    const auto& c = b; // c is a const reference to b
+    std::cout << "c: " << c << std::endl;
+    //c = 5.0; // This will not compile because c is a const reference
+
+
+    // * decltype can be used to get the type of an expression without evaluating it.
+    decltype(a) d = 20; // d is of type int, same as a
+    std::cout << "d: " << d << std::endl;
+    decltype(b) e = 2.71; // e is of type double, same as b
+    std::cout << "e: " << e << std::endl;
+    std::cout << "Type of d: " << typeid(d).name() << std::endl;
+    std::cout << "Type of e: " << typeid(e).name() << std::endl;
+    // * decltype can also be used with references and const variables.
+
 
     return 0;
 }
