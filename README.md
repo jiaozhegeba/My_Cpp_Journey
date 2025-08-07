@@ -5,9 +5,9 @@ This repository contains examples and exercises for modern C++ programming, trac
 ## Table of Contents
 - [Modern C++ Programming](#modern-c-programming)
   - [Table of Contents](#table-of-contents)
-  - [Basic of C++](#basic-of-c)
+  - [Basics of C++](#basics-of-c)
 
-## Basic of C++
+## Basics of C++
 
 This section covers the fundamental concepts of C++ programming.
 
